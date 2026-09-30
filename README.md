@@ -46,3 +46,12 @@ Os nomes usados neste jogo remetem para os navios que Portugal utilizou durante 
 - **[Barca](https://pt.wikipedia.org/wiki/Barca)** — Embarcação pequena e versátil, usada para navegação costeira e tarefas de apoio.
 
 Estes navios foram essenciais para a expansão marítima portuguesa, permitindo viagens de exploração ao longo da costa africana e, mais tarde, até à Índia e ao Brasil.
+
+## Sobre o projeto
+
+Este repositório parte do jogo **Battleship** disponibilizado para a unidade curricular de **Engenharia de Software**
+(LEI/LETI, ISCTE, 2026/2027), adaptado à versão "Discoveries Battleship Game".
+
+O trabalho do grupo consiste em gerir o projeto com Git e GitHub: documentação, definição do Product Backlog em
+formato Scrum (user stories), automação com GitHub Actions e documentação do código com Javadoc.
+
