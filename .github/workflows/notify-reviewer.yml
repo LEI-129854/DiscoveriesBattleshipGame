@@ -1,0 +1,22 @@
+name: Notify reviewer
+on:
+  pull_request:
+    types: [opened, review_requested]
+permissions:
+  pull-requests: write
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const reviewers = pr.requested_reviewers.map(r => '@' + r.login).join(' ');
+            if (!reviewers) return;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: `${reviewers} foste pedido(a) para rever este Pull Request.`
+            });
