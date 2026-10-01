@@ -50,7 +50,7 @@ Estes navios foram essenciais para a expansão marítima portuguesa, permitindo 
 ## Sobre o projeto
 
 Este repositório parte do jogo **Battleship** disponibilizado para a unidade curricular de **Engenharia de Software**
-(LEI/LETI, ISCTE, 2026/2027), adaptado à versão "Discoveries Battleship Game".
+(LEI, ISCTE, 2026/2027), adaptado à versão "Discoveries Battleship Game".
 
 O trabalho do grupo consiste em gerir o projeto com Git e GitHub: documentação, definição do Product Backlog em
 formato Scrum (user stories), automação com GitHub Actions e documentação do código com Javadoc.
