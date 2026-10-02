@@ -8,7 +8,7 @@ Basic academic version of Battleship game to build upon.
 |-------|--------|------|
 | LEI   | 129881  | Rafael Passinhas |
 | LEI | 129856  | Bruno Frasco |
-| LEI   | 131834 | Pedro Razões |
+| LEI   | 131834 | Pedro Silva |
 | LEI | 129854  | Guilherme Aleixo |
 
 ## Tipos de navios
