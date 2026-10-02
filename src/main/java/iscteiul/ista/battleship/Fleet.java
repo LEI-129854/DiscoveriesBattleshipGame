@@ -6,6 +6,12 @@ package iscteiul.ista.battleship;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Default implementation of {@link IFleet}.
+ * <p>
+ * Keeps the ships in a list and validates, when a ship is added, that it lies
+ * inside the board and does not touch any other ship.
+ */
 public class Fleet implements IFleet {
     /**
      * This operation prints all the given ships
@@ -21,6 +27,9 @@ public class Fleet implements IFleet {
 
     private List<IShip> ships;
 
+    /**
+     * Creates an empty fleet.
+     */
     public Fleet() {
         ships = new ArrayList<>();
     }
@@ -88,11 +97,24 @@ public class Fleet implements IFleet {
         return null;
     }
 
+    /**
+     * Checks whether a ship lies entirely inside the board.
+     *
+     * @param s the ship to check
+     * @return {@code true} if all positions of the ship are within
+     *         {@code 0..BOARD_SIZE-1} in both rows and columns
+     */
     private boolean isInsideBoard(IShip s) {
         return (s.getLeftMostPos() >= 0 && s.getRightMostPos() <= BOARD_SIZE - 1 && s.getTopMostPos() >= 0
                 && s.getBottomMostPos() <= BOARD_SIZE - 1);
     }
 
+    /**
+     * Checks whether a ship is too close to any ship already in the fleet.
+     *
+     * @param s the ship to check
+     * @return {@code true} if the ship touches or is adjacent to another ship
+     */
     private boolean colisionRisk(IShip s) {
         for (int i = 0; i < ships.size(); i++) {
             if (ships.get(i).tooCloseTo(s))
@@ -103,7 +125,9 @@ public class Fleet implements IFleet {
 
 
     /**
-     * This operation shows the state of a fleet
+     * This operation shows the state of a fleet: all ships, the floating ships
+     * and then the ships of each category (Galeao, Fragata, Nau, Caravela and
+     * Barca).
      */
     public void printStatus() {
         printAllShips();
@@ -119,7 +143,8 @@ public class Fleet implements IFleet {
      * This operation prints all the ships of a fleet belonging to a particular
      * category
      *
-     * @param category The category of ships of interest
+     * @param category The category of ships of interest, must not be
+     *                 {@code null} (checked with an assertion)
      */
     public void printShipsByCategory(String category) {
         assert category != null;
