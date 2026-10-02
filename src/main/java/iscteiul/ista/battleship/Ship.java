@@ -8,14 +8,14 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Classe abstrata base de todos os navios do jogo.
+ * Abstract base class for all ships of the game.
  * <p>
- * Guarda a categoria, a orientação, a posição de referência e a lista de
- * posições ocupadas pelo navio, e implementa o comportamento comum a todos os
- * tipos de navio (receber tiros, verificação de colisões, limites do navio).
- * As subclasses concretas ({@link Galleon}, {@link Frigate}, {@link Carrack},
- * {@link Caravel} e {@link Barge}) definem a dimensão e preenchem as posições
- * de acordo com a sua forma.
+ * It stores the category, bearing, reference position and the list of
+ * positions occupied by the ship, and implements the behaviour common to every
+ * kind of ship (shooting, collision checks, bounding limits). Concrete
+ * subclasses ({@link Galleon}, {@link Frigate}, {@link Carrack},
+ * {@link Caravel} and {@link Barge}) define the size and fill the positions
+ * according to their shape.
  */
 public abstract class Ship implements IShip {
 
@@ -26,15 +26,15 @@ public abstract class Ship implements IShip {
     private static final String BARCA = "barca";
 
     /**
-     * Método de fábrica que constrói um navio do tipo pedido.
+     * Factory method that builds a ship of the requested kind.
      *
-     * @param shipKind o tipo de navio, em minúsculas: {@code "galeao"},
-     *                 {@code "fragata"}, {@code "nau"}, {@code "caravela"} ou
+     * @param shipKind the kind of ship, in lower case: {@code "galeao"},
+     *                 {@code "fragata"}, {@code "nau"}, {@code "caravela"} or
      *                 {@code "barca"}
-     * @param bearing  a orientação do navio
-     * @param pos      a posição de referência do navio
-     * @return o novo navio, ou {@code null} se {@code shipKind} não for
-     *         reconhecido
+     * @param bearing  the bearing of the ship
+     * @param pos      the reference position of the ship
+     * @return the new ship, or {@code null} if {@code shipKind} is not
+     *         recognised
      */
     static Ship buildShip(String shipKind, Compass bearing, Position pos) {
         Ship s;
@@ -64,18 +64,19 @@ public abstract class Ship implements IShip {
     private String category;
     private Compass bearing;
     private IPosition pos;
+    /** Positions occupied by the ship, filled by the subclasses. */
     protected List<IPosition> positions;
 
 
     /**
-     * Cria um navio. A lista de posições ocupadas começa vazia e é preenchida
-     * no construtor da subclasse.
+     * Creates a ship. The list of occupied positions starts empty and is
+     * filled by the subclass constructor.
      *
-     * @param category a categoria (nome) do navio
-     * @param bearing  a orientação do navio, não pode ser {@code null}
-     *                 (verificado com uma asserção)
-     * @param pos      a posição de referência do navio, não pode ser
-     *                 {@code null} (verificado com uma asserção)
+     * @param category the category (name) of the ship
+     * @param bearing  the bearing of the ship, must not be {@code null}
+     *                 (checked with an assertion)
+     * @param pos      the reference position of the ship, must not be
+     *                 {@code null} (checked with an assertion)
      */
     public Ship(String category, Compass bearing, IPosition pos) {
         assert bearing != null;
@@ -96,9 +97,9 @@ public abstract class Ship implements IShip {
     }
 
     /**
-     * Obtém as posições ocupadas pelo navio.
+     * Gets the positions occupied by the ship.
      *
-     * @return a lista de posições ocupadas pelo navio
+     * @return the list of positions occupied by the ship
      */
     public List<IPosition> getPositions() {
         return positions;
@@ -182,8 +183,8 @@ public abstract class Ship implements IShip {
     /**
      * {@inheritDoc}
      *
-     * @param pos a posição a verificar, não pode ser {@code null} (verificado
-     *            com uma asserção)
+     * @param pos the position to check, must not be {@code null} (checked with
+     *            an assertion)
      */
     @Override
     public boolean occupies(IPosition pos) {
@@ -198,8 +199,8 @@ public abstract class Ship implements IShip {
     /**
      * {@inheritDoc}
      *
-     * @param other o outro navio, não pode ser {@code null} (verificado com
-     *              uma asserção)
+     * @param other the other ship, must not be {@code null} (checked with an
+     *              assertion)
      */
     @Override
     public boolean tooCloseTo(IShip other) {
@@ -228,11 +229,10 @@ public abstract class Ship implements IShip {
     /**
      * {@inheritDoc}
      * <p>
-     * Todas as posições do navio iguais a {@code pos} ficam marcadas como
-     * atingidas.
+     * Every position of the ship equal to {@code pos} is marked as hit.
      *
-     * @param pos a posição onde foi disparado o tiro, não pode ser
-     *            {@code null} (verificado com uma asserção)
+     * @param pos the position that was shot, must not be {@code null}
+     *            (checked with an assertion)
      */
     @Override
     public void shoot(IPosition pos) {
@@ -244,11 +244,12 @@ public abstract class Ship implements IShip {
         }
     }
 
+
     /**
-     * Devolve uma representação textual do navio na forma
-     * {@code [categoria orientação posição]}.
+     * Returns a textual representation of the ship in the form
+     * {@code [category bearing position]}.
      *
-     * @return a representação textual do navio
+     * @return the string representation of the ship
      */
     @Override
     public String toString() {

@@ -4,51 +4,51 @@
 package iscteiul.ista.battleship;
 
 /**
- * Pontos cardeais usados como orientação (rumo) de um navio.
+ * Cardinal directions used as the bearing (orientation) of a ship.
  * <p>
- * Cada constante está associada a um carácter, usado na leitura dos comandos
- * introduzidos pelo utilizador. Note-se que o oeste é representado por
- * {@code 'o'}.
+ * Each constant is associated with a single character used when reading
+ * commands from the user. Note that west is represented by {@code 'o'}
+ * (from the Portuguese "oeste").
  *
  * @author fba
  */
 public enum Compass {
-    /** Norte, representado por {@code 'n'}. */
+    /** North, represented by {@code 'n'}. */
     NORTH('n'),
-    /** Sul, representado por {@code 's'}. */
+    /** South, represented by {@code 's'}. */
     SOUTH('s'),
-    /** Este, representado por {@code 'e'}. */
+    /** East, represented by {@code 'e'}. */
     EAST('e'),
-    /** Oeste, representado por {@code 'o'}. */
+    /** West, represented by {@code 'o'} (Portuguese "oeste"). */
     WEST('o'),
-    /** Direção desconhecida ou inválida, representada por {@code 'u'}. */
+    /** Unknown or invalid direction, represented by {@code 'u'}. */
     UNKNOWN('u');
 
     private final char c;
 
     /**
-     * Cria uma direção da bússola.
+     * Creates a compass direction.
      *
-     * @param c o carácter que representa esta direção
+     * @param c the character that represents this direction
      */
     Compass(char c) {
         this.c = c;
     }
 
     /**
-     * Obtém o carácter que representa esta direção.
+     * Gets the character that represents this direction.
      *
-     * @return o carácter da direção ({@code n}, {@code s}, {@code e},
-     *         {@code o} ou {@code u})
+     * @return the direction character ({@code n}, {@code s}, {@code e},
+     *         {@code o} or {@code u})
      */
     public char getDirection() {
         return c;
     }
 
     /**
-     * Devolve o carácter da direção sob a forma de cadeia de caracteres.
+     * Returns the direction character as a string.
      *
-     * @return uma cadeia com o carácter da direção
+     * @return a one-character string with the direction character
      */
     @Override
     public String toString() {
@@ -56,12 +56,12 @@ public enum Compass {
     }
 
     /**
-     * Converte um carácter no valor {@link Compass} correspondente.
+     * Converts a character into the corresponding {@link Compass} value.
      *
-     * @param ch o carácter a converter ({@code n}, {@code s}, {@code e} ou
-     *           {@code o})
-     * @return a direção correspondente, ou {@link #UNKNOWN} se o carácter não
-     *         corresponder a nenhuma direção
+     * @param ch the character to convert ({@code n}, {@code s}, {@code e}
+     *           or {@code o})
+     * @return the matching direction, or {@link #UNKNOWN} if the character
+     *         does not match any direction
      */
     static Compass charToCompass(char ch) {
         Compass bearing;
