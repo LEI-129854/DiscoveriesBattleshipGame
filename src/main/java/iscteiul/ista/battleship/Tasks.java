@@ -9,6 +9,16 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Console-driven tasks used to exercise the game incrementally: building
+ * ships (task A), building fleets (tasks B and C) and firing rounds of shots
+ * (task D).
+ * <p>
+ * All input is read from the standard input through a {@link Scanner} and all
+ * output is sent to a Log4j logger. Commands typed by the user are in
+ * Portuguese: {@code nova}, {@code desisto}, {@code rajada}, {@code ver},
+ * {@code mapa} and {@code estado}.
+ */
 public class Tasks {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -51,7 +61,10 @@ public class Tasks {
     }
 
     /**
-     * This task tests the building up of fleets
+     * This task tests the building up of fleets.
+     * <p>
+     * Accepted commands: {@code nova} (build a new fleet), {@code estado}
+     * (print the fleet status) and {@code desisto} (quit).
      */
     public static void taskB() {
         Scanner in = new Scanner(System.in);
@@ -77,7 +90,10 @@ public class Tasks {
 
     /**
      * This task tests the building up of fleets and takes into consideration the
-     * possibility of cheating
+     * possibility of cheating.
+     * <p>
+     * Accepts the commands of {@link #taskB()} plus {@code mapa}, which logs
+     * the fleet.
      */
     public static void taskC() {
         Scanner in = new Scanner(System.in);
@@ -105,7 +121,13 @@ public class Tasks {
     }
 
     /**
-     * This task also tests the fighting element of a round of three shots
+     * This task also tests the fighting element of a round of three shots.
+     * <p>
+     * Accepts the commands {@code nova} (new fleet and game), {@code estado}
+     * (fleet status), {@code mapa} (print the fleet), {@code rajada} (fire a
+     * round of three shots), {@code ver} (print the valid shots) and
+     * {@code desisto} (quit). After each round it logs the hits, invalid and
+     * repeated shots and the number of remaining ships.
      */
     public static void taskD() {
 
@@ -150,9 +172,14 @@ public class Tasks {
     }
 
     /**
-     * This operation allows the build up of a fleet, given user data
+     * This operation allows the build up of a fleet, given user data.
+     * <p>
+     * Ships are read and added to the fleet until the loop counter, which
+     * counts the successfully added ships, exceeds {@code Fleet.FLEET_SIZE}.
+     * Ships that are unknown or cannot be added are reported and skipped.
      *
-     * @param in The scanner to read from
+     * @param in The scanner to read from, must not be {@code null} (checked
+     *           with an assertion)
      * @return The fleet that has been built
      */
     static Fleet buildFleet(Scanner in) {
@@ -178,10 +205,14 @@ public class Tasks {
     }
 
     /**
-     * This operation reads data about a ship, build it and returns it
+     * This operation reads data about a ship, build it and returns it.
+     * <p>
+     * The expected input is the ship kind, the row, the column and the bearing
+     * character.
      *
      * @param in The scanner to read from
-     * @return The created ship based on the data that has been read
+     * @return The created ship based on the data that has been read, or
+     *         {@code null} if the ship kind is unknown
      */
     static Ship readShip(Scanner in) {
         String shipKind = in.next();
@@ -192,7 +223,9 @@ public class Tasks {
     }
 
     /**
-     * This operation allows reading a position in the map
+     * This operation allows reading a position in the map.
+     * <p>
+     * The expected input is two integers: the row and the column.
      *
      * @param in The scanner to read from
      * @return The position that has been read
@@ -205,7 +238,7 @@ public class Tasks {
 
     /**
      * This operation allows firing a round of shots (three) over a fleet, in the
-     * context of a game
+     * context of a game. If a shot sinks a ship, a message is logged.
      *
      * @param in   The scanner to read from
      * @param game The context game while fleet is being attacked

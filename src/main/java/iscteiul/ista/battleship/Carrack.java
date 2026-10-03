@@ -3,13 +3,26 @@
  */
 package iscteiul.ista.battleship;
 
+/**
+ * A carrack ("Nau"): a ship that occupies three consecutive positions in a
+ * straight line.
+ * <p>
+ * With bearing {@link Compass#NORTH} or {@link Compass#SOUTH} it extends
+ * downwards from the reference position (increasing rows); with
+ * {@link Compass#EAST} or {@link Compass#WEST} it extends to the right
+ * (increasing columns).
+ */
 public class Carrack extends Ship {
     private static final Integer SIZE = 3;
     private static final String NAME = "Nau";
 
     /**
-     * @param bearing
-     * @param pos
+     * Creates a carrack starting at the given position.
+     *
+     * @param bearing the bearing of the carrack
+     * @param pos     the initial position of the carrack
+     * @throws IllegalArgumentException if {@code bearing} is not one of
+     *                                  north, south, east or west
      */
     public Carrack(Compass bearing, IPosition pos) throws IllegalArgumentException {
         super(Carrack.NAME, bearing, pos);
